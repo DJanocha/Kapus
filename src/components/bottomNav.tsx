@@ -93,7 +93,7 @@ const BottomNav: FC<BottomNavProps> = ({ history }): ReactElement => {
       <GitHubIcon
         style={{ marginLeft: "15px", marginTop: "5px", cursor: "pointer" }}
         onClick={() => {
-          window.open("https://github.com/djanocha")
+          window.open("https://github.com/DJanocha/Kapus")
         }}
         fontSize="large"
       />
