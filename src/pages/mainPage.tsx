@@ -25,7 +25,7 @@ const MainPage: FC<any> = (): ReactElement => {
     appDispatcher(unblockRouteIndexByIdAC(3))
 
     // console.log(routeIndexes)
-  }, [])
+  }, [appDispatcher])
 
   useEffect(() => {}, [appState.department])
   const myDepartments: Array<IDepartmentInfo> = [
