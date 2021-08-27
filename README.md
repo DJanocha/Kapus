@@ -8,7 +8,7 @@ This project was created with create-react-app, so the only thing you have to do
 >
 commmand followed by
 >
->npm run
+>npm start
 >
 # PL Zaczynamy z Kapusiem
 
@@ -18,5 +18,5 @@ Ten projekt został zaprojektowany przy użyciu create-react-app, więc jedyne, 
 >
 a po niej:
 >
->npm run
+>npm start
 >
