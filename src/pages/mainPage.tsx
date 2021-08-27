@@ -4,9 +4,8 @@ import { Paper, makeStyles } from "@material-ui/core"
 
 import Department from "../components/department"
 import IDepartmentInfo from "../model/IDepartment"
-import { chooseDepartmentAC, reportFetchRequestAC, unblockRouteIndexAC, unblockRouteIndexByIdAC } from "../redux/actions/reportActions"
+import { chooseDepartmentAC, reportFetchRequestAC, unblockRouteIndexByIdAC } from "../redux/actions/reportActions"
 import { RootState } from "../redux/reducers/rootReducer"
-import { routeIndexes } from "../config/routes"
 const useStyles = makeStyles({
   root: {
     display: "grid",
@@ -37,15 +36,17 @@ const MainPage: FC<any> = (): ReactElement => {
   return (
     <Paper className={styles.chosenElement}>
       <div className={styles.root}>
-        {myDepartments.map((departmentItem) => (
-          <Department
-            choose={() => {
-              appDispatcher(chooseDepartmentAC(departmentItem))
-              appDispatcher(unblockRouteIndexByIdAC(1))
-            }}
-            chosen={appState?.department?.name === departmentItem.name}
-            department={{ name: departmentItem.name, city: departmentItem.city, country: departmentItem.country }}
-          />
+        {myDepartments.map((departmentItem, iter) => (
+          <div key={iter}>
+            <Department
+              choose={() => {
+                appDispatcher(chooseDepartmentAC(departmentItem))
+                appDispatcher(unblockRouteIndexByIdAC(1))
+              }}
+              chosen={appState?.department?.name === departmentItem.name}
+              department={{ name: departmentItem.name, city: departmentItem.city, country: departmentItem.country }}
+            />
+          </div>
         ))}
       </div>
     </Paper>

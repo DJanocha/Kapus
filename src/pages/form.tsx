@@ -1,8 +1,7 @@
 import { Button, TextField } from "@material-ui/core"
-import { FC, ReactElement, useState } from "react"
+import { FC, ReactElement } from "react"
 import { useSelector } from "react-redux"
 import { useFormControls } from "../hooks/useFormControl"
-import IForm from "../model/IForm"
 import { RootState } from "../redux/reducers/rootReducer"
 
 const inputFieldValues = [
@@ -28,17 +27,6 @@ const Form: FC<any> = (): ReactElement => {
   const appState = useSelector((state: RootState) => state.report) //potrzegbne w ogole?
 
   const { handleInputValue, handleFormSubmit, formIsValid, errors } = useFormControls()
-  // const [defVal, setDefVal] = useState("")
-  // const getDefVal = (val: "message" | "fullName" | "email"): string | null => {
-  //   switch (val) {
-  //     case "message":
-  //       return appState?.form?.message || appState.exampleMessages.join("\n")
-  //     case "fullName":
-  //       return appState?.form?.fullName || ""
-  //     case "email":
-  //       return appState?.form?.email || ""
-  //   }
-  // }
   type formVariable = "message" | "fullName" | "email"
   const getDefaultValue = (variableName: formVariable): string => {
     switch (variableName) {
@@ -56,7 +44,7 @@ const Form: FC<any> = (): ReactElement => {
     <form onSubmit={handleFormSubmit}>
       {inputFieldValues.map((inputFieldValue, index) => {
         return (
-          <>
+          <div key={index}>
             <TextField
               defaultValue={getDefaultValue(inputFieldValue.name as formVariable)}
               fullWidth
@@ -70,7 +58,7 @@ const Form: FC<any> = (): ReactElement => {
               autoComplete="none"
               {...(errors[inputFieldValue.name] && { error: true, helperText: errors[inputFieldValue.name] })}
             />
-          </>
+          </div>
         )
       })}
       {appState?.form?.fullName ? (

@@ -21,14 +21,3 @@ function* reportsSaga() {
   yield all([takeLatest(reportFetchRequest, fetchMessages)])
 }
 export default reportsSaga
-
-// function* reportFetchSaga() {
-//   try {
-//     const response = yield call(getMessages)
-//     yield put(reportFetchSuccessAC({messages:response.data }));
-//   } catch (e) {
-//     yield put({
-//       error: e.message;
-//     })
-//   }
-// }

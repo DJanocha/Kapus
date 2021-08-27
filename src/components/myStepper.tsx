@@ -5,8 +5,6 @@ import { routes, getCurrentIndex } from "../config/routes"
 import { withRouter } from "react-router-dom"
 import { useEffect } from "react"
 import { RouteComponentProps } from "react-router"
-import { useSelector } from "react-redux"
-import { RootState } from "../redux/reducers/rootReducer"
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -53,7 +51,6 @@ function getStepContent(step: number) {
 }
 
 const MyStepper: FC<RouteComponentProps> = ({ history }): ReactElement => {
-  const appStore = useSelector((store: RootState) => store.report)
   useEffect(() => {
     console.log(history)
   }, [history])
@@ -62,12 +59,6 @@ const MyStepper: FC<RouteComponentProps> = ({ history }): ReactElement => {
   const [completed, setCompleted] = React.useState<{ [k: number]: boolean }>({})
   const steps = getSteps()
 
-  useEffect(() => {
-    // setCompleted({ 0: true })
-    // setCompleted({ 1: true })
-    console.log(completed)
-    console.log("obczajmy te comleted")
-  }, [])
   const totalSteps = () => {
     return steps.length
   }
@@ -76,43 +67,15 @@ const MyStepper: FC<RouteComponentProps> = ({ history }): ReactElement => {
     return Object.keys(completed).length
   }
 
-  // const isLastStep = () => {
-  //   return activeStep === totalSteps() - 1
-  // }
-
   const allStepsCompleted = () => {
     return completedSteps() === totalSteps()
   }
-
-  // const handleNext = () => {
-  //   const newActiveStep =
-  //     isLastStep() && !allStepsCompleted()
-  //       ? // It's the last step, but not all steps have been completed,
-  //         // find the first step that has been completed
-  //         steps.findIndex((_, i) => !(i in completed))
-  //       : activeStep + 1
-  //   // const a = handleStep(newActiveStep)
-  //   // if (completed[activeStep]) a()
-  //   if (completed[activeStep]) handleStep(newActiveStep)
-  //   // setActiveStep(newActiveStep);
-  // }
-
-  // const handleBack = () => {
-  //   setActiveStep((prevActiveStep) => prevActiveStep - 1)
-  // }
 
   const handleStep = (step: number) => {
     setActiveStep(step)
     history.push(getRoutes()[step])
   }
   const [available, setAvailable] = React.useState(false)
-  // const handleComplete = () => {
-  //   const newCompleted = completed
-  //   newCompleted[activeStep] = true
-  //   setCompleted(newCompleted)
-  //   handleNext()
-  //   setAvailable(true)
-  // }
 
   const handleReset = () => {
     setActiveStep(0)
@@ -125,7 +88,6 @@ const MyStepper: FC<RouteComponentProps> = ({ history }): ReactElement => {
       {/* <Paper elevation={10}> */}
       <Stepper nonLinear activeStep={getCurrentIndex(history.location.pathname)}>
         {steps.map((label, index) => (
-          // <Step expanded disabled={index !== steps.length - 1 && index !== 0} key={label}>
           <Step expanded key={label}>
             <StepButton
               disabled

@@ -3,7 +3,7 @@ import { FC, ReactElement } from "react"
 const Policy: FC<any> = (): ReactElement => {
   return (
     <div>
-      <Card elevation={12}>{[...new Array(6)].map((_) => loremIpsum).join("\n\n\n\n")}</Card>
+      <Card elevation={12}>{[...new Array(20)].map((_) => loremIpsum).join("\n\n\n\n")}</Card>
     </div>
   )
 }

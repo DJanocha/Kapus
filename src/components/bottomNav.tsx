@@ -100,8 +100,6 @@ const BottomNav: FC<BottomNavProps> = ({ history }): ReactElement => {
     </BottomNavigation>
   )
 }
-//
-//https://github.com/DJanocha
 export default withRouter(BottomNav)
 
 const NightSwitch: FC<any> = (): ReactElement => {
